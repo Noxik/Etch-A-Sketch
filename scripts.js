@@ -25,6 +25,18 @@ submitBtn.addEventListener("click", () => {
 });
 
 
+/* clear board */
+const clearBtn = document.getElementById("clear");
+clearBtn.addEventListener("click", () => {
+    while (container.firstChild) {
+        container.firstChild.remove()
+    } 
+    /* create new board with submit range */
+    createGrid();
+    }
+);
+
+
 /* create grid with mouse "hover effect*/
 function createGrid() {
     let columns = Math.pow(sizeLength, 2);
