@@ -24,7 +24,6 @@ submitBtn.addEventListener("click", () => {
     }
 });
 
-
 /* clear board */
 const clearBtn = document.getElementById("clear");
 clearBtn.addEventListener("click", () => {
@@ -36,10 +35,21 @@ clearBtn.addEventListener("click", () => {
     }
 );
 
-
 /* create grid with mouse "hover effect*/
 function createGrid() {
-    let columns = Math.pow(sizeLength, 2);
+
+/* default color or random */
+let rainbow = false;
+console.log(rainbow)
+const random = document.getElementById("random");
+random.addEventListener("click", () => {
+    rainbow = true;
+    console.log(rainbow)
+    }
+); 
+
+/* create smalldivs */
+let columns = Math.pow(sizeLength, 2);
     for(let i=0; i<columns; i++) {
 const smalldiv = document.createElement("div");
 smalldiv.classList.add("smalldiv")
@@ -50,7 +60,12 @@ container.appendChild(smalldiv);
 const smalldiv = document.querySelectorAll(".smalldiv");
 smalldiv.forEach( function(e){
 e.addEventListener("mousemove", () => {
+    if (rainbow == false) {
     e.style.backgroundColor = "red"
+} else {
+    var randomColor = Math.floor(Math.random()*16777215).toString(16);
+    e.style.backgroundColor = "#" + randomColor;
+} 
   });
 })
 }
