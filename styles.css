@@ -34,9 +34,15 @@ body {
 input {
     padding: 4px 8px;
     margin: 10px 0;
+    width: 100%
+   }
+
+#submit {
+margin: 0;
+
 }
 
 #number {
+    margin: 0;
     width: 100%;
 }
-

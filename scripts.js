@@ -36,19 +36,14 @@ clearBtn.addEventListener("click", () => {
     }
 );
 
-
-/* create grid with mouse "hover effect*/
-function createGrid() {
-let color = "blue"
-
 /* default color or random */
 let rainbow = false;
 const random = document.getElementById("random");
 random.addEventListener("click", () => {
     rainbow = true;
     darkmode = false;
-    console.log("dark: " + darkmode);
-    console.log("rain: " + rainbow)
+//   console.log("dark: " + darkmode);
+//   console.log("rain: " + rainbow)
     }
 ); 
 
@@ -57,11 +52,25 @@ const defaultColor = document.getElementById("default");
 defaultColor.addEventListener("click", () => {
     rainbow = false;
     darkmode = false;
-    color = "blue"
-    console.log("dark: " + darkmode);
-    console.log("rain: " + rainbow);
+    color = "blue";
+//   console.log("dark: " + darkmode);
+//   console.log("rain: " + rainbow);
     }
 ); 
+
+let darkmode = false;
+const dark = document.getElementById("dark");
+dark.addEventListener("click", () => {
+    darkmode = true;
+    console.log("dark: " + darkmode);
+    rainbow = false
+    console.log("rain: " + rainbow)
+    });
+
+let color = "blue"
+
+/* create grid with mouse "hover effect*/
+function createGrid() {
 
 /* create smalldivs */
 let columns = Math.pow(sizeLength, 2);
@@ -69,7 +78,7 @@ let columns = Math.pow(sizeLength, 2);
 const smalldiv = document.createElement("div");
 smalldiv.classList.add("smalldiv");
 smalldiv.style.backgroundColor = "white";
-smalldiv.style.filter = "brightness(1)"
+smalldiv.style.filter = `brightness(1)`
 container.appendChild(smalldiv);
 }
 
@@ -80,14 +89,43 @@ e.addEventListener("mouseenter", () => {
 
     if (rainbow == false  && darkmode == false) {
     e.style.backgroundColor = color;
-   
-
+    e.style.filter = "brightness(1)"
  } else if (darkmode == true) {
-    
     let currentStyle = e.style.filter;
     console.log(currentStyle)
-    if (currentStyle == "brightness(1)") {
-        e.style.filter = "brightness(0.5)"
+
+/* darkmode on - 10% per move to darkness */
+    switch (currentStyle) {
+    case ("brightness(1)"):
+        e.style.filter = "brightness(0.9)";
+        break;
+    case "brightness(0.9)":
+        e.style.filter = "brightness(0.8)";
+        break;
+    case "brightness(0.8)":
+        e.style.filter = "brightness(0.7)";
+        break;        
+    case "brightness(0.7)":
+        e.style.filter = "brightness(0.6)";
+        break;    
+    case "brightness(0.6)":
+        e.style.filter = "brightness(0.5)";
+        break;      
+    case "brightness(0.5)":
+        e.style.filter = "brightness(0.4)";
+        break;  
+    case "brightness(0.4)":
+        e.style.filter = "brightness(0.3)";
+        break;  
+    case "brightness(0.3)":
+        e.style.filter = "brightness(0.2)";
+        break; 
+    case "brightness(0.2)":
+        e.style.filter = "brightness(0.1)";
+        break;
+    case "brightness(0.1)":
+        e.style.filter = "brightness(0)";
+        break;     
     }
 
 } else if (darkmode == false && rainbow == true) {
@@ -99,19 +137,3 @@ e.addEventListener("mouseenter", () => {
 })
 }
 
-let darkmode = false;
-const dark = document.getElementById("dark");
-dark.addEventListener("click", () => {
-    darkmode = true;
-    console.log("dark: " + darkmode);
-    rainbow = false
-    console.log("rain: " + rainbow)
-    })
-
-/* RANDOM RGB 
-function getRandomIntInclusive(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1) + min); // The maximum is inclusive and the minimum is inclusive
-  }
-*/
